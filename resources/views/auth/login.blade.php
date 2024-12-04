@@ -52,5 +52,7 @@
                 </x-button>
             </div>
         </form>
+        <h1 class="ml-4 text-sm text-gray-900 dark:text-gray-900">Dont have account</h1>
+        <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
     </x-auth-card>
 </x-guest-layout>

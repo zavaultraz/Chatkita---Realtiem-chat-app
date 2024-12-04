@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,12 +14,43 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Halaman login tetap seperti semula
 Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+// Setelah login, langsung diarahkan ke MessagesController
+Route::get('/dashboard', )->middleware(['auth'])->name(config('chatify.routes.prefix'));
 
+
+//route artisan call
+Route::get('/storage-link', function() {
+    Artisan::call('storage:link');
+    return 'success';
+    return 'storage link succses';
+});
+Route::get('/config-cache', function() {
+    Artisan::call('config:cache');
+    return 'config cache succses';
+});
+Route::get('/config-clear', function() {
+    Artisan::call('config:clear');
+    return 'config clear succses';
+});
+Route::get('/view-cache', function() {
+    Artisan::call('view:cache');
+    return 'view cache succses';
+});
+Route::get('/view-clear', function() {
+    Artisan::call('view:clear');
+    return 'view clear succses';
+});
+Route::get('/route-clear', function() {
+    Artisan::call('route:clear');
+    return 'route clear succses';
+});
+
+
+
+// Pastikan file auth.php tetap di-include
 require __DIR__.'/auth.php';
